@@ -1,0 +1,22 @@
+html, body {
+    margin: 0;
+    padding: 0;
+  }
+  canvas {
+    display: block;
+    margin: 0 auto;
+  }
+  h1 {
+    text-align: center;
+    color: green;
+  }
+  h2 {
+    margin: 10px;
+  }
+  p {
+    width: 300px;
+    height: 220px; 
+    border: 2px solid black;
+    padding: 5px;
+    margin: 20px;
+  }
