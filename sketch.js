@@ -294,5 +294,5 @@ function draw() {
 
     textSize(20);
     fill("white");
-    text("回転" + spin, 10, 150);
+    text("回転" + spin*(-1), 10, 150);
 }
