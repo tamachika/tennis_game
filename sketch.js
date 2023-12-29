@@ -55,7 +55,7 @@ function getRandomInt(max) {
 }
 
 function preload() {
-    hitSound = loadSound('./audio/hit.mp3'); // サウンドファイルのパスを指定
+    hitSound = loadSound('audio/hit.mp3'); // サウンドファイルのパスを指定
 }
   
 
