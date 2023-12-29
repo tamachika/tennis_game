@@ -1,3 +1,11 @@
+//サウンド
+function audio() {
+    document.getElementById('btn_audio').currentTime = 0; //連続クリックに対応
+    document.getElementById('btn_audio').play(); //クリックしたら音を再生
+}
+
+
+//以下ゲーム操作に関わる部分
 let ballX;
 let ballY;
 let ballSpeedX;
@@ -232,6 +240,7 @@ function draw() {
 
     //左のパドルの当たり判定
     if (paddleAY < ballY && ballY < paddleAY + paddleAHeight && paddleAX + paddleAWidth + ballRadius > ballX && ballX > paddleAX + paddleAWidth) {
+        audio();
         //回転の影響について
         //ballSpeedYを増やすと下にいく
         ballSpeedY = ballSpeedY * 0.5 + spin;
