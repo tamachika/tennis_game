@@ -1,44 +1,55 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #272727;
+  color: #fff;
   margin: 0;
   padding: 0;
 }
 
-main {
-  max-width: 800px;
-  margin: 40px auto;
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+header {
+  text-align: center;
+  background-color: #00adb5;
+  padding: 10px;
 }
 
 h1 {
-  color: #333;
+  margin: 0;
+  font-size: 32px;
+}
+
+section {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #393e46;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
 h2 {
-  color: #555;
+  color: #00adb5;
 }
 
 p {
   line-height: 1.5;
-  color: #777;
+  color: #eeeeee;
 }
 
 /* コード要素にスタイルを追加（オプション） */
 code {
-  background-color: #f8f8f8;
+  background-color: #5a5a5a;
   padding: 2px 4px;
-  border: 1px solid #ddd;
+  border: 1px solid #444;
+  border-radius: 3px;
 }
 
 /* リンクにスタイルを追加（オプション） */
 a {
-  color: #007bff;
+  color: #6ab04c;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #00adb5;
 }

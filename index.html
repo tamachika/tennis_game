@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>テニスゲーム</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+</head>
 
-  </head>
-  <body>
-    <main>
-      <h1>テニスゲーム</h1>
-      <h2>・遊び方</h2>
-      <p>
-        ・LEFTのプレイヤー<br>
-        W…バーの上移動<br>
-        S…バーの下移動<br>
-        ・RIGHTのプレイヤー<br>
-        O…バーの上移動<br>
-        L…バーの下移動<br>
-        ・ゲームオーバー時<br>
-        N…ニューゲーム(点数リセット)<br>
-        SPACE…続ける(点数は保存)
-      </p>
+<body>
+  <header>
+    <h1>テニスゲーム</h1>
+  </header>
+
+  <section id="instructions">
+    <h2>遊び方</h2>
+    <p>
+      <strong>LEFTのプレイヤー:</strong><br>
+      W…バーの上移動<br>
+      S…バーの下移動
+    </p>
+    <p>
+      <strong>RIGHTのプレイヤー:</strong><br>
+      O…バーの上移動<br>
+      L…バーの下移動
+    </p>
+    <p>
+      <strong>ゲームオーバー時:</strong><br>
+      N…ニューゲーム(点数リセット)<br>
+      SPACE…続ける(点数は保存)
+    </p>
+  </section>
+
+  <section id="special-move">
     <h2>必殺技！</h2>
-      <p>
-        移動ボタンを押している間はずっと加速するので、上と下移動ボタンを同時押しすると、どんどん速度が貯まります。<br>
-        その後、ボールに高速でぶつかると回転がめっちゃかかります。（卓球的な）
-      </p>
-    </main>
-    <script src="sketch.js"></script>
-  </body>
+    <p>
+      移動ボタンを押している間はずっと加速するので、上と下移動ボタンを同時押しすると、どんどん速度が貯まります。<br>
+      その後、ボールに高速でぶつかると回転がめっちゃかかります。（卓球的な）
+    </p>
+  </section>
+
+  <script src="sketch.js"></script>
+</body>
+
 </html>
