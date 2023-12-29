@@ -1,11 +1,5 @@
-//サウンド
-function audio() {
-    document.getElementById('hit_audio').currentTime = 0; //連続クリックに対応
-    document.getElementById('hit_audio').play(); //クリックしたら音を再生
-}
+let hitSound;
 
-
-//以下ゲーム操作に関わる部分
 let ballX;
 let ballY;
 let ballSpeedX;
@@ -60,7 +54,14 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+function preload() {
+    hitSound = loadSound('./audio/hit.mp3'); // サウンドファイルのパスを指定
+}
+  
+
 function setup() {
+    hitSound.setVolume(0.5); // 音量を設定
+
     createCanvas(600, 400);
     x1 = (width / 2) - 1;
     y1 = height * 0;
@@ -240,7 +241,7 @@ function draw() {
 
     //左のパドルの当たり判定
     if (paddleAY < ballY && ballY < paddleAY + paddleAHeight && paddleAX + paddleAWidth + ballRadius > ballX && ballX > paddleAX + paddleAWidth) {
-        audio();
+        hitSound.play();
         //回転の影響について
         //ballSpeedYを増やすと下にいく
         ballSpeedY = ballSpeedY * 0.5 + spin;
@@ -254,6 +255,8 @@ function draw() {
     }
     //右のパドルの当たり判定
     if (paddleBY < ballY && ballY < paddleBY + paddleBHeight && paddleBX - ballRadius < ballX && ballX < paddleBX) {
+        hitSound.play();
+
         ballSpeedY = ballSpeedY * 0.5 + spin;
         ballSpeedX *= -1;
 
