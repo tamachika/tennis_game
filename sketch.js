@@ -256,10 +256,10 @@ function draw() {
 
         if (L_Up_Speed > 2) {
             spin = -L_Up_KeyCounter/5;
-            scoreA += Math.abs(spin*0.05); // 掛けた回転量に応じてスコアを加算
+            scoreA += round(Math.abs(spin*0.05),2); // 掛けた回転量に応じてスコアを加算
         }else if (L_Down_Speed > 2) {
             spin = L_Down_KeyCounter/5;
-            scoreA += Math.abs(spin*0.05);
+            scoreA += round(Math.abs(spin*0.05),2);
         }
     }
     //右のパドルの当たり判定
@@ -271,11 +271,11 @@ function draw() {
 
         if (R_Up_Speed > 2) {
             spin = -R_Up_KeyCounter/5;
-            scoreB += Math.abs(spin*0.05); // 掛けた回転量に応じてスコアを加算
+            scoreB += round(Math.abs(spin*0.05),2); // 掛けた回転量に応じてスコアを加算
         }
         if (R_Down_Speed > 2) {
             spin = R_Down_KeyCounter/5;
-            scoreB += Math.abs(spin*0.05);
+            scoreB += round(Math.abs(spin*0.05),2);
         }
     }
 
