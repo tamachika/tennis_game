@@ -1,3 +1,5 @@
+import Math from 'mathjs';
+
 let hitSound;
 
 let ballX;
@@ -141,6 +143,7 @@ function draw() {
         is_L_Up_KeyPressed = false; // Wキーの押下状態をリセット
         L_Up_KeyCounter = 0;
     }
+
     // カウンターの値を使った処理
     // 例: カウンターの値を表示
     textSize(20);
@@ -253,10 +256,10 @@ function draw() {
 
         if (L_Up_Speed > 2) {
             spin = -L_Up_KeyCounter/5;
-            scoreA += spin*0.1; // 掛けた回転量に応じてスコアを加算
+            scoreA += Math.abs(spin*0.05); // 掛けた回転量に応じてスコアを加算
         }else if (L_Down_Speed > 2) {
             spin = L_Down_KeyCounter/5;
-            scoreA += spin*0.1;
+            scoreA += Math.abs(spin*0.05);
         }
     }
     //右のパドルの当たり判定
@@ -268,11 +271,11 @@ function draw() {
 
         if (R_Up_Speed > 2) {
             spin = -R_Up_KeyCounter/5;
-            scoreB += spin*0.1; // 掛けた回転量に応じてスコアを加算
+            scoreB += Math.abs(spin*0.05); // 掛けた回転量に応じてスコアを加算
         }
         if (R_Down_Speed > 2) {
             spin = R_Down_KeyCounter/5;
-            scoreB += spin*0.1;
+            scoreB += Math.abs(spin*0.05);
         }
     }
 
