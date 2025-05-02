@@ -1,55 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>テニスゲーム（仮）</title>
+  <title>スピンテニス</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
 </head>
 
 <body>
-  <header>
-    <h1>テニスゲーム（仮）</h1>
-  </header>
+  <div class="game-container">
+    <header>
+      <h1>スピンテニス</h1>
+      <div class="theme-toggle">
+        <button id="theme-button">ダーク/ライト切替</button>
+      </div>
+    </header>
 
-  <section id="instructions">
-    <h2>遊び方</h2>
-    <p>
-      <strong>LEFTのプレイヤー:</strong><br>
-      W…バーの上移動<br>
-      S…バーの下移動
-    </p>
-    <p>
-      <strong>RIGHTのプレイヤー:</strong><br>
-      O…バーの上移動<br>
-      L…バーの下移動
-    </p>
-    <p>
-      <strong>ゲームオーバー時:</strong><br>
-      N…ニューゲーム(点数リセット)<br>
-      SPACE…続ける(点数は保存)
-    </p>
-  </section>
+    <main>
+      <div id="game-canvas"></div>
+      
+      <div class="game-info">
+        <section id="instructions" class="card">
+          <h2>操作方法</h2>
+          <div class="controls-container">
+            <div class="control-group">
+              <h3>左プレイヤー</h3>
+              <div class="key-container">
+                <div class="key">W</div>
+                <span>上移動</span>
+              </div>
+              <div class="key-container">
+                <div class="key">S</div>
+                <span>下移動</span>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <h3>右プレイヤー</h3>
+              <div class="key-container">
+                <div class="key">O</div>
+                <span>上移動</span>
+              </div>
+              <div class="key-container">
+                <div class="key">L</div>
+                <span>下移動</span>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <h3>ゲーム操作</h3>
+              <div class="key-container">
+                <div class="key">N</div>
+                <span>ニューゲーム</span>
+              </div>
+              <div class="key-container">
+                <div class="key">SPACE</div>
+                <span>続ける</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <section id="special-move">
-    <h2>必殺技！</h2>
-    <p>
-      移動ボタンを押している間はずっと加速するので、上と下移動ボタンを同時押しすると、どんどん速度が貯まります。<br>
-      その後、ボールに高速でぶつかると回転がめっちゃかかります。（卓球的な）<br>
-      回転をかける行為も加点対象になります。
-    </p>
-  </section>
-
-  <div class="hit" onclick="audio()">音がなるよ!!</div>
- 
+        <section id="special-move" class="card">
+          <h2>スピン技術</h2>
+          <div class="special-move-content">
+            <div class="technique">
+              <div class="technique-icon">🔄</div>
+              <p>移動ボタンを押し続けると加速し、高速でボールに当たると強力なスピンがかかります！</p>
+            </div>
+            <div class="technique">
+              <div class="technique-icon">🎯</div>
+              <p>スピンがかかったボールは軌道が曲がり、壁に当たると反射角も変化します！</p>
+            </div>
+            <div class="technique">
+              <div class="technique-icon">🏆</div>
+              <p>スピンの強さに応じてボーナスポイントが加算されます！</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  
   <audio id="hit_audio">
-      <source src="./audio/hit.mp3" type="audio/mp3">
+    <source src="./audio/hit.mp3" type="audio/mp3">
   </audio>
 
+  <footer>
+    <p>© 2025 スピンテニス - 物理エンジン強化版</p>
+  </footer>
 
   <script src="sketch.js"></script>
+  <script>
+    // テーマ切り替え機能
+    document.getElementById('theme-button').addEventListener('click', function() {
+      document.body.classList.toggle('light-theme');
+    });
+    
+    // p5.jsのキャンバスを特定の要素内に配置
+    window.addEventListener('load', function() {
+      const canvas = document.querySelector('canvas');
+      if (canvas) {
+        document.getElementById('game-canvas').appendChild(canvas);
+      }
+    });
+  </script>
 </body>
-
 </html>

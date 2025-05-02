@@ -64,7 +64,11 @@ function preload() {
 function setup() {
     hitSound.setVolume(0.5); // 音量を設定
 
-    createCanvas(600, 400);
+    // キャンバスを作成し、親要素に配置
+    let canvas = createCanvas(600, 400);
+    canvas.parent('game-canvas');
+    
+    // ゲーム要素の初期化
     x1 = (width / 2) - 1;
     y1 = height * 0;
     xWidth = 2;
@@ -95,19 +99,25 @@ function setup() {
     accelerated_L_Down_speed = 0;
     accelerated_R_Up_speed = 0;
     accelerated_R_Down_speed = 0;
-    
 }
 
 function draw() {
-    console.log('コンソールに出力されるか確認');
-
+    // 背景描画
     background(0);
+    
+    // スコア表示
     textA = "Left:" + scoreA;
     textB = "Right:" + scoreB;
     fill("white");
     textSize(20);
     text(textA, 10, 25);
     text(textB, 305, 25);
+    
+    // ボールの回転による軌道の曲がり効果を適用
+    // 回転がかかっている場合、X方向の速度に少しずつ影響を与える
+    balR_Down_SpeedX += spin * 0.03;
+    
+    // ボールの位置更新
     ballX += balR_Down_SpeedX;
     ballY += balR_Down_SpeedY;
     
@@ -281,11 +291,22 @@ function draw() {
 
     
 
+    // 上下の壁との衝突判定と反射（回転の影響を反映）
     if (ballY + ballRadius > height) {
+        // 下の壁に当たった場合
         balR_Down_SpeedY *= -1;
+        // 回転による反射角への影響
+        balR_Down_SpeedX += spin * 0.5;
+        // 回転の減衰
+        spin *= 0.8;
     }
     if (ballY - ballRadius < 0) {
+        // 上の壁に当たった場合
         balR_Down_SpeedY *= -1;
+        // 回転による反射角への影響
+        balR_Down_SpeedX += spin * 0.5;
+        // 回転の減衰
+        spin *= 0.8;
     }
 
     if (ballX - ballRadius < 0) {
@@ -309,13 +330,51 @@ function draw() {
             setup();
         }
     }
-    //線の描画
-    circle(ballX, ballY, ballRadius * 2);
-    rect(paddleAX, paddleAY, paddleAWidth, paddleAHeight);
-    rect(paddleBX, paddleBY, paddleBWidth, paddleBHeight);
-    rect(x1, y1, xWidth, yHeight);
-
+    // 線とオブジェクトの描画
+    // ボールの描画（回転を視覚的に表現）
+    push();
+    translate(ballX, ballY);
+    // 回転の視覚的表現のためのグラデーション効果
+    if (spin != 0) {
+        for (let i = 0; i < 5; i++) {
+            let alpha = 150 - i * 30;
+            let size = ballRadius * 2 - i;
+            if (spin > 0) {
+                fill(255, 100, 100, alpha); // 下回転は赤っぽく
+            } else {
+                fill(100, 100, 255, alpha); // 上回転は青っぽく
+            }
+            circle(0, 0, size);
+        }
+    }
+    fill(255);
+    circle(0, 0, ballRadius * 2);
+    // 回転の視覚的表現（ボール内の線）
+    if (spin != 0) {
+        stroke(0);
+        strokeWeight(1);
+        rotate(frameCount * spin * 0.01);
+        line(-ballRadius, 0, ballRadius, 0);
+        line(0, -ballRadius, 0, ballRadius);
+    }
+    pop();
+    
+    // パドルと中央線の描画
+    fill(255);
+    noStroke();
+    rect(paddleAX, paddleAY, paddleAWidth, paddleAHeight, 5); // 角を丸くする
+    rect(paddleBX, paddleBY, paddleBWidth, paddleBHeight, 5); // 角を丸くする
+    
+    // 中央線を点線で描画
+    stroke(255, 100);
+    strokeWeight(2);
+    for (let i = 0; i < height; i += 15) {
+        line(width/2, i, width/2, i + 10);
+    }
+    
+    // 回転情報の表示
+    noStroke();
     textSize(20);
     fill("white");
-    text("回転" + spin*(-1), 10, 150);
+    text("回転: " + round(spin*(-1), 2), 10, 150);
 }
